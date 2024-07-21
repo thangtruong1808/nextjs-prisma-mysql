@@ -1,12 +1,13 @@
 "use client";
 
 import React from "react";
-import { useActionState } from "react";
-import { createUser, State } from "../lib/action";
+import { useActionState, useState } from "react";
+import { createUser } from "../lib/action";
 
 const CreateUserForm = () => {
-  const initialState: State = { message: null, errors: {} };
-  const [state, formAction] = useActionState(createUser, initialState);
+  // const initialState: State = { message: null, errors: {} };
+  // const [state, formAction] = useActionState(createUser, initialState);
+  const [message, formAction] = useActionState(createUser, null);
   return (
     <>
       <form action={formAction}>
@@ -26,7 +27,8 @@ const CreateUserForm = () => {
             aria-describedby="name-error"
           />
           <div id="name-error" aria-live="polite" aria-atomic="true">
-            {(state.errors !== undefined &&
+            {message?.errors?.name}
+            {/* {(state.errors !== undefined &&
               state.errors?.name?.map((error: string) => (
                 <p className="mt-2 text-sm text-red-500" key={error}>
                   {error}
@@ -35,7 +37,7 @@ const CreateUserForm = () => {
               <p className="mt-2 text-sm text-red-500">
                 Oops, something went wrong with form validation!
               </p>
-            )}
+            )} */}
           </div>
         </div>
         <div className="mb-4">
@@ -54,11 +56,11 @@ const CreateUserForm = () => {
             aria-describedby="email-error"
           />
           <div id="email-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.email?.map((error: string) => (
+            {/* {state.errors?.email?.map((error: string) => (
               <p className="mt-2 text-sm text-red-500" key={error}>
                 {error}
               </p>
-            ))}
+            ))} */}
           </div>
         </div>
         <div className="mb-4">
@@ -77,11 +79,11 @@ const CreateUserForm = () => {
             aria-describedby="title-error"
           />
           <div id="title-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.title?.map((error: string) => (
+            {/* {state.errors?.title?.map((error: string) => (
               <p className="mt-2 text-sm text-red-500" key={error}>
                 {error}
               </p>
-            ))}
+            ))} */}
           </div>
         </div>
         <div className="mb-4">
@@ -100,11 +102,11 @@ const CreateUserForm = () => {
             aria-describedby="content-error"
           ></textarea>
           <div id="content-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.content?.map((error: string) => (
+            {/* {state.errors?.content?.map((error: string) => (
               <p className="mt-2 text-sm text-red-500" key={error}>
                 {error}
               </p>
-            ))}
+            ))} */}
           </div>
         </div>
         <div className="mb-4">
@@ -123,11 +125,11 @@ const CreateUserForm = () => {
             aria-describedby="bio-error"
           ></textarea>
           <div id="bio-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.bio?.map((error: string) => (
+            {/* {state.errors?.bio?.map((error: string) => (
               <p className="mt-2 text-sm text-red-500" key={error}>
                 {error}
               </p>
-            ))}
+            ))} */}
           </div>
         </div>
         <button
